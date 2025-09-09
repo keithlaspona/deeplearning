@@ -11,3 +11,7 @@ parts:
       # Add more labs as you go, for example:
       # - file: notebooks/Laboratory_6
       # - file: notebooks/Laboratory_7
+
+#  - caption: Projects
+  #  chapters:
+   # - file: notebooks/Project_1
