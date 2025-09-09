@@ -377,16 +377,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ds-elective-4-deep-learning">DS Elective 4 - Deep Learning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-standard-imports">1. Perform Standard Imports</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value">2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter">3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-x-from-the-array-above">4. Create a tensor “x” from the array above</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-dtype-of-x-from-int32-to-int64">5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-x-into-a-3x2-tensor">6. Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-right-hand-column-of-tensor-x">7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-changing-x-return-a-tensor-of-square-values-of-x">8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x">9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-matrix-product-of-x-and-y">10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-standard-imports"><strong>1. Perform Standard Imports</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value"><strong>2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter"><strong>3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-x-from-the-array-above"><strong>4. Create a tensor “x” from the array above</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-dtype-of-x-from-int32-to-int64"><strong>5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-x-into-a-3x2-tensor">6. <strong>Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-right-hand-column-of-tensor-x"><strong>7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-changing-x-return-a-tensor-of-square-values-of-x"><strong>8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x"><strong>9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-matrix-product-of-x-and-y"><strong>10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -407,7 +407,7 @@ document.write(`
 <p><strong>Name:</strong> Keith Laspoña <br>
 <strong>Year &amp; Section:</strong> DS4A</p>
 <section id="perform-standard-imports">
-<h3>1. Perform Standard Imports<a class="headerlink" href="#perform-standard-imports" title="Link to this heading">#</a></h3>
+<h3><strong>1. Perform Standard Imports</strong><a class="headerlink" href="#perform-standard-imports" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -420,7 +420,7 @@ document.write(`
 </div>
 </section>
 <section id="create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value">
-<h3>2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.<a class="headerlink" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value" title="Link to this heading">#</a></h3>
+<h3><strong>2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.</strong><a class="headerlink" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
@@ -432,7 +432,7 @@ document.write(`
 </div>
 </section>
 <section id="create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter">
-<h3>3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.<a class="headerlink" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter" title="Link to this heading">#</a></h3>
+<h3><strong>3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.</strong><a class="headerlink" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -454,7 +454,7 @@ int32
 </div>
 </section>
 <section id="create-a-tensor-x-from-the-array-above">
-<h3>4. Create a tensor “x” from the array above<a class="headerlink" href="#create-a-tensor-x-from-the-array-above" title="Link to this heading">#</a></h3>
+<h3><strong>4. Create a tensor “x” from the array above</strong><a class="headerlink" href="#create-a-tensor-x-from-the-array-above" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
@@ -470,7 +470,7 @@ int32
 </div>
 </section>
 <section id="change-the-dtype-of-x-from-int32-to-int64">
-<h3>5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code><a class="headerlink" href="#change-the-dtype-of-x-from-int32-to-int64" title="Link to this heading">#</a></h3>
+<h3><strong>5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code></strong><a class="headerlink" href="#change-the-dtype-of-x-from-int32-to-int64" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
@@ -488,7 +488,7 @@ torch.int64
 </div>
 </section>
 <section id="reshape-x-into-a-3x2-tensor">
-<h3>6. Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor<a class="headerlink" href="#reshape-x-into-a-3x2-tensor" title="Link to this heading">#</a></h3>
+<h3>6. <strong>Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor</strong><a class="headerlink" href="#reshape-x-into-a-3x2-tensor" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -508,7 +508,7 @@ torch.int64
 </div>
 </section>
 <section id="return-the-right-hand-column-of-tensor-x">
-<h3>7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code><a class="headerlink" href="#return-the-right-hand-column-of-tensor-x" title="Link to this heading">#</a></h3>
+<h3><strong>7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code></strong><a class="headerlink" href="#return-the-right-hand-column-of-tensor-x" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
@@ -527,7 +527,7 @@ torch.int64
 </div>
 </section>
 <section id="without-changing-x-return-a-tensor-of-square-values-of-x">
-<h3>8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code><a class="headerlink" href="#without-changing-x-return-a-tensor-of-square-values-of-x" title="Link to this heading">#</a></h3>
+<h3><strong>8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code></strong><a class="headerlink" href="#without-changing-x-return-a-tensor-of-square-values-of-x" title="Link to this heading">#</a></h3>
 <p>There are several ways to do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -547,7 +547,7 @@ torch.int64
 </div>
 </section>
 <section id="create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x">
-<h3>9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code><a class="headerlink" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x" title="Link to this heading">#</a></h3>
+<h3><strong>9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></strong><a class="headerlink" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x" title="Link to this heading">#</a></h3>
 <p>Use PyTorch directly (not NumPy) to create a tensor of random integers between 0 (inclusive) and 5 (exclusive). Use 42 as seed. Think about what shape it should have to permit matrix multiplication.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -566,7 +566,7 @@ torch.int64
 </div>
 </section>
 <section id="find-the-matrix-product-of-x-and-y">
-<h3>10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.<a class="headerlink" href="#find-the-matrix-product-of-x-and-y" title="Link to this heading">#</a></h3>
+<h3><strong>10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</strong><a class="headerlink" href="#find-the-matrix-product-of-x-and-y" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_prod</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -595,16 +595,16 @@ torch.int64
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "deeplearning"
+            mode: "python"
         },
         kernelOptions: {
-            name: "deeplearning",
+            name: "python3",
             path: "./notebooks"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'deeplearning'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -642,16 +642,16 @@ torch.int64
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ds-elective-4-deep-learning">DS Elective 4 - Deep Learning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-standard-imports">1. Perform Standard Imports</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value">2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter">3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-x-from-the-array-above">4. Create a tensor “x” from the array above</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-dtype-of-x-from-int32-to-int64">5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-x-into-a-3x2-tensor">6. Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-right-hand-column-of-tensor-x">7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-changing-x-return-a-tensor-of-square-values-of-x">8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x">9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-matrix-product-of-x-and-y">10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-standard-imports"><strong>1. Perform Standard Imports</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-function-called-set-seed-that-accepts-seed-int-as-a-parameter-this-function-must-return-nothing-but-just-set-the-seed-to-a-certain-value"><strong>2. Create a function called <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> that accepts <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code> as a parameter, this function must return nothing but just set the seed to a certain value.</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-numpy-array-called-arr-that-contains-6-random-integers-between-0-inclusive-and-5-exclusive-call-the-set-seed-function-and-use-42-as-the-seed-parameter"><strong>3. Create a NumPy array called “arr” that contains 6 random integers between 0 (inclusive) and 5 (exclusive), call the <code class="docutils literal notranslate"><span class="pre">set_seed()</span></code> function and use <code class="docutils literal notranslate"><span class="pre">42</span></code> as the seed parameter.</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-x-from-the-array-above"><strong>4. Create a tensor “x” from the array above</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-dtype-of-x-from-int32-to-int64"><strong>5. Change the dtype of x from <code class="docutils literal notranslate"><span class="pre">int32</span></code> to <code class="docutils literal notranslate"><span class="pre">int64</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-x-into-a-3x2-tensor">6. <strong>Reshape <code class="docutils literal notranslate"><span class="pre">x</span></code> into a 3x2 tensor</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-right-hand-column-of-tensor-x"><strong>7. Return the right-hand column of tensor <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-changing-x-return-a-tensor-of-square-values-of-x"><strong>8. Without changing x, return a tensor of square values of <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-tensor-y-with-the-same-number-of-elements-as-x-that-can-be-matrix-multiplied-with-x"><strong>9. Create a tensor <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same number of elements as <code class="docutils literal notranslate"><span class="pre">x</span></code>, that can be matrix-multiplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-matrix-product-of-x-and-y"><strong>10. Find the matrix product of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</strong></a></li>
 </ul>
 </li>
 </ul>
