@@ -3,29 +3,28 @@
 
 title: Deep Learning Portfolio
 author: Keith Laspoña
-logo: logo.png  # optional, put logo.png in your repo root
+logo: logo.png
 
-# Force re-execution of notebooks on each build
+# Do NOT execute notebooks during build (just use saved outputs)
 execute:
-  execute_notebooks: force
+  execute_notebooks: off
 
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: book.tex
 
-# Add a bibtex file so that we can create citations
+# Optional references file
 bibtex_bibfiles:
   - references.bib
 
-# Information about where the book exists on the web
+# Repository settings
 repository:
-  url: https://github.com/keithlaspona/deeplearning  # Online location of your book
-  path_to_book: .  # Book is in the repo root
-  branch: main     # Branch where source files live
+  url: https://github.com/keithlaspona/deeplearning  # Your repo URL
+  path_to_book: .  # Book is at repo root
+  branch: main
 
-# Add GitHub buttons to your book
+# GitHub buttons
 html:
   use_issues_button: true
   use_repository_button: true
-  baseurl: /deeplearning  # Important for GitHub Pages under subpath
