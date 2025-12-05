@@ -1,0 +1,23 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+
+
+parts:
+  - caption: Laboratory Exercises
+    chapters:
+      - file: notebooks/Laboratory_1
+      - file: notebooks/Laboratory_2
+      - file: notebooks/Laboratory_3
+      - file: notebooks/Laboratory_4
+      - file: notebooks/Laboratory_5
+      - file: notebooks/Laboratory_6
+      # Add more labs as you go, for example:
+      # - file: notebooks/Laboratory_7
+  - caption: Blogpost
+    chapters:
+      - file: blogpost/homework201
+  #  chapters:
+   # - file: notebooks/Project_1

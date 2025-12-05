@@ -1,0 +1,48 @@
+# Book settings
+title: "Deep Learning Portfolio"
+author: "Keith Laspoña"
+logo: logo.gif
+
+execute:
+  execute_notebooks: off
+  
+sphinx:
+  extra_extensions: []
+  config:
+    exclude_patterns:
+      - 'deepl/Lib/site-packages/**'
+      - '_build'
+      - 'Thumbs.db'
+      - '.DS_Store'
+      - '**.ipynb_checkpoints'
+
+launch_buttons:
+  notebook_interface: "classic"
+  binderhub_url: ""
+  jupyterhub_url: ""
+  thebe: false
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+
+latex:
+  latex_documents:
+    targetname: book.tex
+    title: "Deep Learning Portfolio"
+    author: "Keith Laspoña"
+    documentclass: "manual"
+
+bibtex_bibfiles:
+  - references.bib
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - colon_fence
+
+repository:
+  url: https://github.com/keithlaspona/deeplearning
+  path_to_book: .
+  branch: main

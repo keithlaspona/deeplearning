@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Momentum: A Deep Dive into Adam's Adaptive Mechanics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Charter', 'Georgia', 'Cambria', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #242424;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            color: #000000;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #6B6B6B;
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #E6E6E6;
+            margin-bottom: 48px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+
+        .author-details {
+            flex: 1;
+        }
+
+        .author-name {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: #000000;
+        }
+
+        .publish-date {
+            font-size: 14px;
+            color: #6B6B6B;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 48px 0 24px 0;
+            color: #000000;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 36px 0 16px 0;
+            color: #000000;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            color: #242424;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #000000;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        .math-block {
+            background: #F7F7F7;
+            padding: 24px;
+            margin: 32px 0;
+            border-radius: 4px;
+            overflow-x: auto;
+            border-left: 3px solid #667eea;
+        }
+
+        .math-inline {
+            background: #F7F7F7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .highlight-box {
+            background: #FFF9E6;
+            border-left: 4px solid #FFD700;
+            padding: 20px 24px;
+            margin: 32px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .comparison-section {
+            background: #F9FAFB;
+            padding: 32px;
+            margin: 32px 0;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16px;
+        }
+
+        th {
+            background: #F7F7F7;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #E6E6E6;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #E6E6E6;
+            line-height: 1.6;
+        }
+
+        tr:hover {
+            background: #FAFAFA;
+        }
+
+        ul, ol {
+            margin: 24px 0;
+            padding-left: 32px;
+        }
+
+        li {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        pre {
+            background: #0b1020;
+            color: #f5f5f5;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 24px 0;
+        }
+
+        code {
+            background: #F7F7F7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #D73A49;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #E6E6E6;
+            margin: 56px 0;
+            border: none;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 32px;
+            border-radius: 8px;
+            margin: 48px 0;
+        }
+
+        .references {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 2px solid #E6E6E6;
+        }
+
+        .references h2 {
+            margin-top: 0;
+        }
+
+        .references ol {
+            font-size: 18px;
+        }
+
+        .references li {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #444444;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            p, li {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="container fade-in">
+        <header>
+            <h1>Mastering Momentum: A Deep Dive into Adam's Adaptive Mechanics</h1>
+            
+            <div class="author-info">
+                <div class="author-avatar">KL</div>
+                <div class="author-details">
+                    <div class="author-name">Keith Laspoña</div>
+                    <div class="publish-date">8 min read · Deep Learning · MNIST Experiment</div>
+                </div>
+            </div>
+        </header>
+
+        <p>In the vast landscape of Deep Learning, building the architecture is only half the battle. The other half is figuring out how to teach that architecture to learn. Enter the <strong>Optimizer</strong>: the engine that drives the neural network down the loss landscape toward convergence.</p>
+
+        <p>While Stochastic Gradient Descent (SGD) is the grandfather of optimizers, there is one name that dominates nearly every modern research paper, Kaggle competition, and production model: <strong>Adam</strong>.</p>
+
+        <p>But why is Adam (Adaptive Moment Estimation) the default choice? Is it simply faster, or is there something more sophisticated happening under the hood? In this post, we will deconstruct the algorithm, explore the bias correction math that saves it from early failure, and run a small experiment on <strong>MNIST</strong> to visualize how Adam compares to vanilla SGD in practice.</p>
+
+        <hr class="section-divider">
+
+        <h2>1. The Intuition: A Tale of Two Hikers</h2>
+
+        <p>To understand Adam, imagine two hikers trying to get to the bottom of a dark canyon (the global minimum).</p>
+
+        <div class="comparison-section">
+            <h3>The SGD Hiker</h3>
+            <p>He takes steps of a fixed size. If the slope is steep, he might overshoot. If the terrain flattens out (a plateau), his fixed steps become painfully slow, and he might get stuck. He only cares about the current slope.</p>
+
+            <h3>The Adam Hiker</h3>
+            <p>She has a "memory" of her past speed (<strong>Momentum</strong>) and she adjusts her stride length based on the terrain's roughness (<strong>Adaptive Learning Rate</strong>).</p>
+            <ul>
+                <li>If she has been moving fast in one direction, she keeps going that way (Momentum).</li>
+                <li>If the terrain is steep and unpredictable, she takes smaller, cautious steps.</li>
+                <li>If the terrain is flat and consistent, she takes massive leaps to cross it quickly.</li>
+            </ul>
+        </div>
+
+        <p>Adam is essentially <strong>SGD with a brain</strong>. It combines two powerful ideas: <strong>Momentum</strong> (from SGD+Momentum) and <strong>RMSProp</strong> (Root Mean Square Propagation).</p>
+
+        <hr class="section-divider">
+
+        <h2>2. The Mathematics: Under the Hood</h2>
+
+        <p>Adam tracks two variables, or "moments," for every single weight in your network. Let \(g_t\) be the gradient at time step \(t\).</p>
+
+        <h3>First Moment: Momentum \((m_t)\)</h3>
+
+        <p>This tracks the moving average of the gradient. It tells us <strong>the direction to go</strong>.</p>
+
+        <div class="math-block">
+            \[m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t\]
+        </div>
+
+        <p><strong>β₁ (Beta 1)</strong>: The decay rate, typically 0.9. This means we keep 90% of the previous velocity and add 10% of the new gradient.</p>
+
+        <h3>Second Moment: Variance \((v_t)\)</h3>
+
+        <p>This tracks the moving average of the squared gradient. It tells us <strong>the magnitude or volatility</strong> of the slope.</p>
+
+        <div class="math-block">
+            \[v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2\]
+        </div>
+
+        <p><strong>β₂ (Beta 2)</strong>: The decay rate, typically 0.999.</p>
+
+        <h3>The "Cold Start" Problem: Bias Correction</h3>
+
+        <div class="highlight-box">
+            <p><strong>Here is the detail often skipped in introductory tutorials.</strong> Since m and v are initialized as vectors of 0s, at the very start of training (when t = 1), the values are heavily biased toward 0.</p>
+            
+            <p>If \(m_0 = 0\) and \(\beta_1 = 0.9\), then \(m_1 = 0.1 \cdot g_1\).</p>
+            
+            <p>The estimate is tiny! It's only 10% of the actual gradient.</p>
+        </div>
+
+        <p>To fix this, Adam artificially boosts the values during the early steps using <strong>Bias Correction</strong>:</p>
+
+        <div class="math-block">
+            \[\hat{m}_t = \frac{m_t}{1 - \beta_1^t}\]
+            \[\hat{v}_t = \frac{v_t}{1 - \beta_2^t}\]
+        </div>
+
+        <p>At t = 1, we divide by (1 - 0.9¹) = 0.1. This multiplies our tiny estimate by 10, restoring it to the correct scale.</p>
+
+        <p>As t increases, \(\beta^t\) approaches 0, and the denominator becomes 1, effectively turning off the correction once training is stable.</p>
+
+        <h3>The Update Rule</h3>
+
+        <p>Finally, we update the parameters \((\theta)\):</p>
+
+        <div class="math-block">
+            \[\theta_{t+1} = \theta_t - \frac{\eta \cdot \hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}\]
+        </div>
+
+        <ul>
+            <li><strong>η (Eta)</strong>: The global learning rate (usually 0.001).</li>
+            <li><strong>ε (Epsilon)</strong>: A tiny number (e.g., \(10^{-8}\)) to prevent division by zero.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2>3. Why Adam Wins: Saddle Points & Sparse Gradients</h2>
+
+        <p>The math above gives Adam two superpowers that standard SGD lacks.</p>
+
+        <h3>A. Escaping Saddle Points</h3>
+
+        <p>A <strong>Saddle Point</strong> is a region where the loss surface is flat in one dimension but curves up in another (shaped like a horse saddle). In high-dimensional Deep Learning, local minima are rare; getting stuck on a saddle point is the real danger.</p>
+
+        <ul>
+            <li><strong>SGD</strong> often stalls here because the gradient is near zero in all directions.</li>
+            <li><strong>Adam</strong> uses its stored Momentum \((m_t)\) to "roll" through the flat region, maintaining velocity even when the current gradient suggests stopping.</li>
+        </ul>
+
+        <h3>B. Handling Sparse Gradients</h3>
+
+        <p>In problems like NLP or Computer Vision (MNIST), some features (pixels or words) appear very rarely.</p>
+
+        <ul>
+            <li><strong>SGD</strong>: Updates all parameters with the same learning rate. Rare features get updated so infrequently that they never learn properly.</li>
+            <li><strong>Adam</strong>: The division by \(\sqrt{\hat{v}_t}\) acts as a normalizer. If a specific parameter has rarely been updated (low \(v_t\)), the denominator is small, which increases the effective step size for that parameter.</li>
+        </ul>
+
+        <p>Adam essentially says, <em>"We haven't seen this feature often, so when we do, let's learn a LOT from it."</em></p>
+
+        <hr class="section-divider">
+
+        <h2>4. The Experiment: Adam vs SGD on MNIST</h2>
+
+        <p>To ground the theory in a simple but concrete example, we now compare <strong>Adam</strong> and <strong>vanilla SGD</strong> on the classic <strong>MNIST handwritten digits</strong> dataset. The goal is not to break any accuracy records, but to directly observe how the choice of optimizer affects convergence speed and stability.</p>
+
+        <h3>4.1 Experimental Setup</h3>
+
+        <ul>
+            <li><strong>Dataset</strong>: MNIST (60,000 training images, 10,000 test images, 28×28 grayscale digits).</li>
+            <li><strong>Preprocessing</strong>:
+                <ul>
+                    <li>Normalize pixel values to \([0, 1]\).</li>
+                    <li>Flatten 28×28 images into 784-dimensional vectors.</li>
+                </ul>
+            </li>
+            <li><strong>Model</strong> (simple MLP):
+                <ul>
+                    <li>Input: 784</li>
+                    <li>Dense(128, ReLU)</li>
+                    <li>Dropout(0.2)</li>
+                    <li>Dense(10, Softmax)</li>
+                </ul>
+            </li>
+            <li><strong>Loss</strong>: Categorical cross-entropy.</li>
+            <li><strong>Batch size</strong>: 128.</li>
+            <li><strong>Epochs</strong>: 10.</li>
+            <li><strong>Optimizers</strong>:
+                <ul>
+                    <li><strong>SGD</strong> with learning rate = 0.01.</li>
+                    <li><strong>Adam</strong> with learning rate = 0.001.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="highlight-box">
+            <p><strong>Key idea:</strong> We keep the model, data, and training loop identical, and only swap the optimizer. This isolates the effect of the optimization algorithm itself.</p>
+        </div>
+
+        <h3>4.2 Implementation (Keras Code)</h3>
+
+        <p>The code below can be run in a Jupyter notebook and linked from this blog post (for example, inside a Jupyter Book or GitHub Pages site).</p>
+
+        <pre><code class="language-python">
+import tensorflow as tf
+from tensorflow.keras import layers, models
+from tensorflow.keras.datasets import mnist
+
+# 1. Load and preprocess MNIST
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_train = x_train.astype("float32") / 255.0
+x_test  = x_test.astype("float32") / 255.0
+
+# Flatten 28x28 → 784
+x_train = x_train.reshape(-1, 28 * 28)
+x_test  = x_test.reshape(-1, 28 * 28)
+
+# One-hot encode labels
+num_classes = 10
+y_train = tf.keras.utils.to_categorical(y_train, num_classes)
+y_test  = tf.keras.utils.to_categorical(y_test, num_classes)
+
+def build_mlp_model():
+    model = models.Sequential([
+        layers.Input(shape=(28 * 28,)),
+        layers.Dense(128, activation="relu"),
+        layers.Dropout(0.2),
+        layers.Dense(num_classes, activation="softmax"),
+    ])
+    return model
+
+# 2. Train with two different optimizers
+optimizers = {
+    "SGD":  tf.keras.optimizers.SGD(learning_rate=0.01),
+    "Adam": tf.keras.optimizers.Adam(learning_rate=0.001),
+}
+
+histories = {}
+
+for opt_name, opt in optimizers.items():
+    print(f"\nTraining with {opt_name}...")
+    model = build_mlp_model()
+    model.compile(
+        optimizer=opt,
+        loss="categorical_crossentropy",
+        metrics=["accuracy"]
+    )
+
+    history = model.fit(
+        x_train, y_train,
+        validation_split=0.1,
+        epochs=10,
+        batch_size=128,
+        verbose=1
+    )
+
+    test_loss, test_acc = model.evaluate(x_test, y_test, verbose=0)
+    print(f"{opt_name} test accuracy: {test_acc:.4f}")
+
+    history.history["test_accuracy"] = test_acc
+    histories[opt_name] = history.history
+</code></pre>
+
+        <p>Next, we can visualize the learning curves to see how quickly each optimizer converges.</p>
+
+        <pre><code class="language-python">
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 5))
+for opt_name, hist in histories.items():
+    plt.plot(hist["val_accuracy"], label=f"{opt_name} (val)")
+plt.xlabel("Epoch")
+plt.ylabel("Validation Accuracy")
+plt.title("Adam vs SGD on MNIST (Validation Accuracy)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+for opt_name, hist in histories.items():
+    plt.plot(hist["val_loss"], label=f"{opt_name} (val)")
+plt.xlabel("Epoch")
+plt.ylabel("Validation Loss")
+plt.title("Adam vs SGD on MNIST (Validation Loss)")
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
+
+        <h3>4.3 Example Results</h3>
+
+        <p>The exact numbers will vary slightly every time you run the notebook (due to random initialization and data shuffling), but a typical run produces patterns similar to the table below:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Optimizer</th>
+                    <th>Val Accuracy (Epoch 1)</th>
+                    <th>Best Val Accuracy (within 10 epochs)</th>
+                    <th>Test Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SGD</strong> (lr = 0.01)</td>
+                    <td>~0.90</td>
+                    <td>~0.97</td>
+                    <td>~0.96–0.97</td>
+                </tr>
+                <tr>
+                    <td><strong>Adam</strong> (lr = 0.001)</td>
+                    <td>~0.96</td>
+                    <td>~0.98</td>
+                    <td>~0.98</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>More importantly than the exact percentages, the validation curves typically show:</p>
+        <ul>
+            <li><strong>Adam climbs faster</strong> in the first few epochs.</li>
+            <li><strong>SGD is slower but steady</strong>, catching up after more epochs.</li>
+            <li>Both optimizers can eventually reach competitive test accuracy on MNIST.</li>
+        </ul>
+
+        <h3>4.4 What We Observed</h3>
+
+        <ol>
+            <li><strong>Faster early convergence with Adam</strong>  
+                Adam’s validation accuracy improves sharply in the first 1–3 epochs, while SGD increases more gradually. This matches the theory: bias-corrected momentum and adaptive learning rates allow Adam to take large, confident steps, especially during the “cold start” phase.
+            </li>
+
+            <li><strong>Smoother learning curves</strong>  
+                SGD’s validation accuracy often shows more noise from epoch to epoch, because every mini-batch can pull the parameters in a slightly different direction. Adam’s momentum term acts as a low-pass filter, smoothing the update direction so that the curves look more stable.
+            </li>
+
+            <li><strong>Similar final performance, different paths</strong>  
+                After enough epochs, SGD can reach accuracy close to Adam on MNIST. The main difference is not the final number but how <em>quickly</em> and <em>smoothly</em> it gets there.
+            </li>
+        </ol>
+
+        <div class="highlight-box">
+            <p><strong>Takeaway for tuning:</strong> If you care about fast, stable convergence (for example, when training many models or using limited GPU time), Adam is usually an excellent default. If you want to squeeze out the last bit of generalization or explore flatter minima, you can start with Adam for speed and then switch to SGD with momentum later in training.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>5. Practical Guide: Hyperparameter Tuning</h2>
+
+        <p>While Adam is famous for working "out of the box," you may sometimes need to tune it.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Default</th>
+                    <th>When to Tune?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Learning Rate (α)</strong></td>
+                    <td>0.001</td>
+                    <td>The most important knob. If loss diverges (goes to infinity), decrease it. If loss creates a "plateau" too early, try increasing it slightly or using a Scheduler.</td>
+                </tr>
+                <tr>
+                    <td><strong>β₁ (Momentum)</strong></td>
+                    <td>0.9</td>
+                    <td>Tune for instability. If your loss curve is extremely jittery, increasing this to 0.95 or 0.99 can smooth it out.</td>
+                </tr>
+                <tr>
+                    <td><strong>β₂ (RMSProp)</strong></td>
+                    <td>0.999</td>
+                    <td>Rarely needs tuning. Lowering it (e.g., to 0.99) can help in non-stationary problems where the data distribution changes rapidly.</td>
+                </tr>
+                <tr>
+                    <td><strong>ε (Epsilon)</strong></td>
+                    <td>1e-7</td>
+                    <td>Crucial for Mixed Precision Training. If you use float16, the default epsilon might be rounded to zero, causing NaNs. Increase to 1e-4 for stability.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>The "Generalization Gap" Warning</h3>
+
+        <div class="highlight-box">
+            <p>A common critique is that Adam converges too fast to a <strong>sharp minimum</strong>, whereas SGD (with momentum) often finds a wider, flatter minimum that generalizes better to new data.</p>
+            
+            <p><strong>Pro Tip</strong>: If you are squeezing out the final 0.1% accuracy for a competition, try switching from Adam to SGD halfway through training (swapping the engine once the car is up to speed).</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+
+            <p>Adam isn't magic; it's <strong>momentum and scaling</strong>. By adapting the learning rate for every single parameter, it navigates the complex, high-dimensional saddles of deep learning loss landscapes with an efficiency that vanilla SGD cannot match.</p>
+
+            <p>Our MNIST experiment shows this behavior in practice: Adam reaches high accuracy quickly with smooth learning curves, while SGD is slower but can eventually catch up. In real projects, this means faster prototyping, fewer failed runs, and better use of compute.</p>
+
+            <p>While SGD remains relevant for specific generalization tasks, Adam remains the <strong>King of Convergence</strong>. Understanding the math behind its moments and bias correction—combined with hands-on experiments like this—empowers you to debug training failures and tune your models with confidence.</p>
+        </div>
+
+        <div class="references">
+            <h2>References</h2>
+            <ol>
+                <li>Kingma, D. P., &amp; Ba, J. (2015). Adam: A Method for Stochastic Optimization. International Conference on Learning Representations (ICLR).</li>
+                <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em> (Chapter 8: Optimization for Training Deep Models). MIT Press.</li>
+                <li>Loshchilov, I., &amp; Hutter, F. (2019). Decoupled Weight Decay Regularization. International Conference on Learning Representations (ICLR).</li>
+                <li>Reddi, S. J., Kale, S., &amp; Kumar, S. (2018). On the Convergence of Adam and Beyond. International Conference on Learning Representations (ICLR).</li>
+                <li>Ruder, S. (2016). An overview of gradient descent optimization algorithms. arXiv preprint arXiv:1609.04747.</li>
+                <li>LeCun, Y., Cortes, C., &amp; Burges, C. J. C. (1998). The MNIST database of handwritten digits.</li>
+                <li>TensorFlow Keras Documentation. <em>Optimizers and training loops.</em></li>
+            </ol>
+        </div>
+    </article>
+
+    <script>
+        // Render all KaTeX math expressions
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+</body>
+</html>

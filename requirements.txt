@@ -1,0 +1,11 @@
+jupyter-book==1.0.4
+matplotlib
+numpy
+torch
+torchvision
+pandas
+scikit-learn
+seaborn
+tqdm
+torchsummary
+notebook

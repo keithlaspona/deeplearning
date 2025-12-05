@@ -1,0 +1,28 @@
+
+version: 1
+project:
+  title: Deep Learning Portfolio
+  authors:
+    - name: Keith Laspoña
+  github: keithlaspona/deeplearning
+  bibliography:
+    - references.bib
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: intro.md
+    - title: Laboratory Exercises
+      children:
+        - file: notebooks\Laboratory_1
+        - file: notebooks\Laboratory_2
+        - file: notebooks\Laboratory_3
+        - file: notebooks\Laboratory_4
+        - file: notebooks\Laboratory_5
+        - file: notebooks\Laboratory_6
+site:
+  options:
+    logo: logo.gif
+    folders: true
+  template: book-theme
